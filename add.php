@@ -36,11 +36,12 @@
             $no_siswa = $_POST['no_siswa'];
             $gender = $_POST['gender'];
             $tanggal_lahir = $_POST['tanggal_lahir'];
-            $status = $_POST['status'];
-            $keterangan = $_POST['keterangan'];
+            $status = null;
+            $keterangan = null;
+            $tanggal_hadir = null;
 
             // Check if any field is empty
-            if (empty($nama) || empty($kelas) || empty($no_siswa) || empty($gender) || empty($tanggal_lahir) || empty($status) || empty($keterangan)) {
+            if (empty($nama) || empty($kelas) || empty($no_siswa) || empty($gender) || empty($tanggal_lahir)) {
                 echo "<script>alert('Data tidak valid. Semua field harus diisi.')</script>";
                 return false;
             }
@@ -53,7 +54,8 @@
                 'gender' => $gender,
                 'tanggal_lahir' => $tanggal_lahir,
                 'status' => $status,
-                'keterangan' => $keterangan
+                'keterangan' => $keterangan,
+                'tanggal_hadir' => $tanggal_hadir
             ];
 
             // Read data from the JSON file
@@ -158,21 +160,6 @@
         <div class="mb-3">
             <label for="tanggal_lahir" class="form-label">Tanggal Lahir:</label>
             <input type="date" name="tanggal_lahir" class="form-control" id="tanggal_lahir">
-        </div>
-        
-        <div class="mb-3">
-            <label for="status" class="form-label">Status:</label>
-            <select name="status" id="status" class="form-select" onchange="ganti()">
-                <option value="H">Hadir</option>
-                <option value="S">Sakit</option>
-                <option value="I">Izin</option>
-                <option value="A">Alpha</option>
-            </select>
-        </div>
-        
-        <div class="mb-3">
-            <label for="keterangan" class="form-label">Keterangan:</label>
-            <input type="text" name="keterangan" class="form-control" id="keterangan">
         </div>
 
         <button type="submit" name="back" class="btn btn-danger me-1">Back</button>

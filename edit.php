@@ -62,7 +62,8 @@ if (isset($_POST['update'])) {
         'gender' => $_POST['gender'],
         'tanggal_lahir' => $_POST['tanggal_lahir'],
         'status' => $_POST['status'],
-        'keterangan' => $_POST['keterangan']
+        'keterangan' => $_POST['keterangan'],
+        'tanggal_hadir' => $_POST['tanggal_hadir']
     ];
     
     if ($obj->updateStudentByNoSiswa($no_siswa, $updatedData)) {
@@ -134,6 +135,10 @@ $student = $obj->loadStudentByNoSiswa($no_siswa);
             <div class="mb-3">
                 <label for="keterangan" class="form-label">Keterangan:</label>
                 <input type="text" name="keterangan" class="form-control" id="keterangan" value="<?= htmlspecialchars($student['keterangan'])?>">
+            </div>
+            <div class="mb-3">
+                <label for="tanggal_lahir" class="form-label">Tanggal Hadir:</label>
+                <input type="date" name="tanggal_hadir" class="form-control" id="tanggal_hadir" value="<?= htmlspecialchars($student['tanggal_hadir'])?>">
             </div>
             <button type="submit" name="back" class="btn btn-danger">Back</button>
             <button type="submit" name="update" class="btn btn-primary">Update</button>

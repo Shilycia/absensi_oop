@@ -9,17 +9,49 @@
                 "no_siswa": "G30SPKL",
                 "gender": "L",
                 "tanggal_lahir": "2003-07-28",
-                "status": "H",
-                "keterangan": "Siswa Hadir"
+                "status": null,
+                "keterangan": null,
+                "tanggal_hadir": null
             },
             {
                 "nama": "Bintang A",
                 "kelas": "1A",
                 "no_siswa": "911GT",
                 "gender": "L",
-                "tanggal_lahir": "2007-03-10",
-                "status": "H",
-                "keterangan": "Siswa Hadir"
+                "tanggal_lahir": "2024-09-17",
+                "status": null,
+                "keterangan": null,
+                "tanggal_hadir": null
+            },
+            {
+                "nama": "Momoi",
+                "kelas": "14",
+                "no_siswa": "911GR",
+                "gender": "P",
+                "tanggal_lahir": "2019-05-10",
+                "status": "S",
+                "keterangan": "Siswa Sakit",
+                "tanggal_hadir": "2024-09-17"
+            },
+            {
+                "nama": "Bintang P",
+                "kelas": "16",
+                "no_siswa": "123",
+                "gender": "L",
+                "tanggal_lahir": "2024-02-22",
+                "status": null,
+                "keterangan": null,
+                "tanggal_hadir": null
+            },
+            {
+                "nama": "siapa aja",
+                "kelas": "17",
+                "no_siswa": "rx-39",
+                "gender": "L",
+                "tanggal_lahir": "2024-09-17",
+                "status": null,
+                "keterangan": null,
+                "tanggal_hadir": null
             }
         ]
     },
