@@ -18,6 +18,8 @@ class DataSource {
     }
 }
 
+
+
 class DataBump extends DataSource {
     public function loadData() {
         $data = $this->source();
@@ -29,71 +31,105 @@ class DataBump extends DataSource {
         return null;
     }
 
+    public function resethari() {
+        $data = $this->source(); // Memuat keseluruhan data JSON
+        $today = date("Y-m-d"); // Mendapatkan tanggal hari ini
+    
+        if ($data) {
+            foreach ($data as &$item) {
+                // Proses hanya item dengan status 200 dan ada 'data'
+                if ($item['status'] == 200 && isset($item['data'])) {
+                    foreach ($item['data'] as &$row) {
+                        // Cek apakah tanggal_hadir tidak sama dengan tanggal hari ini
+                        if ($row['tanggal_hadir'] != $today) {
+                            // Set 'tanggal_hadir', 'status', dan 'keterangan' menjadi null
+                            $row['tanggal_hadir'] = null;
+                            $row['status'] = null;
+                            $row['keterangan'] = null;
+                        }
+                    }
+                }
+            }
+            // Simpan data yang sudah diproses tanpa mengubah struktur aslinya
+            $this->saveData($data);
+        }
+    }
+    
+    
+    
+    
+    
+
     public function tableDefault() {
         $data = $this->loadData();
     
         if ($data) {
+            $hasData = false; // Flag to track if any rows are output
+    
             foreach ($data as $index => $row) {
                 $nosiswa = ''; // Reset $nosiswa for each row
-                $urutan = 1; // This tracks the column number
+                $urutan = 1; // Track the column number
                 $break = 1;
     
                 if (isset($row['status']) || isset($row['keterangan']) || isset($row['tanggal_hadir'])) {
-                    continue; 
+                    continue;
                 }
-
-                
+    
+                $hasData = true; // Mark that we have data to display
                 echo '<tr>';
-                
+    
                 foreach ($row as $cell) {
-                        // Check if the current column is the "No Siswa" column
-                        if ($urutan == 3) {
-                            $nosiswa = htmlspecialchars($cell); // Store No Siswa
-                            echo '<td>' . $nosiswa . '</td>';
-                        } else {
-                            echo '<td>' . htmlspecialchars($cell) . '</td>';
-                        }
-        
-                        if ($break == 5) {
-                            break;
-                        }
-                        
-                        $urutan++;
-                        $break++;
+                    // Check if the current column is the "No Siswa" column
+                    if ($urutan == 3) {
+                        $nosiswa = htmlspecialchars($cell); // Store No Siswa
+                        echo '<td>' . $nosiswa . '</td>';
+                    } else {
+                        echo '<td>' . htmlspecialchars($cell) . '</td>';
                     }
-        
-                    // Tombol Edit dan Delete
-                    echo "<td scope='col'>
-                            <form action='' method='post' style='display:inline;'>
-                                <input type='hidden' name='edit_index' value='$nosiswa'>
-                                <button type='submit' name='edit' class='btn btn-warning mx-1'>Edit</button>
-                            </form>
-                            <form action='' method='post' style='display:inline;'>
-                                <input type='hidden' name='delete_index' value='$nosiswa'>
-                                <button type='submit' name='delete' class='btn btn-danger mx-1'>Delete</button>
-                            </form>
-                        </td>";
-        
-                    // Tombol Status Kehadiran
-                    echo "<td scope='col'>
-                            <form action='' method='post' style='display:inline;'>
-                                <input type='hidden' name='status_index' value='$nosiswa'>
-                                <button type='submit' name='status_hadir' class='btn btn-success mx-1'>Hadir</button>
-                                <button type='submit' name='status_sakit' class='btn btn-warning mx-1'>Sakit</button>
-                                <button type='submit' name='status_izin' class='btn btn-primary mx-1'>Izin</button>
-                                <button type='submit' name='status_alpha' class='btn btn-danger mx-1'>Alpha</button>
-                            </form>
-                        </td>";
-        
-                    echo '</tr>';
-                    if($break <= 2){
-                        echo '<tr><td colspan="9">No data available</td></tr>';
+    
+                    if ($break == 5) {
+                        break;
                     }
+    
+                    $urutan++;
+                    $break++;
                 }
-            } else {
+    
+                // Tombol Edit dan Delete
+                echo "<td scope='col'>
+                        <form action='' method='post' style='display:inline;'>
+                            <input type='hidden' name='edit_index' value='$nosiswa'>
+                            <button type='submit' name='edit' class='btn btn-warning mx-1'>Edit</button>
+                        </form>
+                        <form action='' method='post' style='display:inline;'>
+                            <input type='hidden' name='delete_index' value='$nosiswa'>
+                            <button type='submit' name='delete' class='btn btn-danger mx-1'>Delete</button>
+                        </form>
+                    </td>";
+    
+                // Tombol Status Kehadiran
+                echo "<td scope='col'>
+                        <form action='' method='post' style='display:inline;'>
+                            <input type='hidden' name='status_index' value='$nosiswa'>
+                            <button type='submit' name='status_hadir' class='btn btn-success mx-1'>Hadir</button>
+                            <button type='submit' name='status_sakit' class='btn btn-warning mx-1'>Sakit</button>
+                            <button type='submit' name='status_izin' class='btn btn-primary mx-1'>Izin</button>
+                            <button type='submit' name='status_alpha' class='btn btn-danger mx-1'>Alpha</button>
+                        </form>
+                    </td>";
+    
+                echo '</tr>';
+            }
+    
+            if (!$hasData) {
+                // Output this if no data was shown in the loop
+                echo '<tr><td colspan="9">No data available</td></tr>';
+            }
+        } else {
             echo '<tr><td colspan="9">No data available</td></tr>';
         }
     }
+    
     
 
     public function updateStatus($no_siswa, $status) {
@@ -148,29 +184,21 @@ class DataBump extends DataSource {
     public function deleteDataByNoSiswa($no_siswa) {
         $data = $this->source();
         
-        // Check if data exists and iterate through the data
         foreach ($data as &$item) {
             if ($item['status'] == 200 && isset($item['data'])) {
-                // Search for the student with the matching no_siswa
                 foreach ($item['data'] as $key => $student) {
                     if (isset($student['no_siswa']) && $student['no_siswa'] == $no_siswa) {
-                        // Delete the student if found
                         unset($item['data'][$key]);
-                        
-                        // Reindex the array after deletion
-                        $item['data'] = array_values($item['data']);
-                        
-                        // Save the updated data back to the file
-                        $this->saveData($data);
-                        
-                        return true; // Return true to indicate successful deletion
+                        $item['data'] = array_values($item['data']); // Reindexing
+                        $this->saveData($data); // Save the entire data structure
+                        return true;
                     }
                 }
             }
         }
-        
-        return false; // Return false if no student with the given no_siswa was found
+        return false;
     }
+    
     
     public function search() {
         $inputnama = "";
@@ -256,6 +284,7 @@ class DataBump extends DataSource {
 }
 
 $obj = new DataBump();
+$obj->resethari();
 
 if (isset($_POST['edit'])) {
     $editIndex = $_POST['edit_index'];
@@ -301,6 +330,8 @@ if (isset($_POST['status_alpha'])) {
     header("Location: ".$_SERVER['PHP_SELF']);
     exit;
 }
+
+
 
 ?>
 

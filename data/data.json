@@ -9,9 +9,9 @@
                 "no_siswa": "G30SPKL",
                 "gender": "L",
                 "tanggal_lahir": "2003-07-28",
-                "status": null,
-                "keterangan": null,
-                "tanggal_hadir": null
+                "status": "H",
+                "keterangan": "Siswa Hadir",
+                "tanggal_hadir": "2024-09-17"
             },
             {
                 "nama": "Bintang A",
@@ -19,9 +19,9 @@
                 "no_siswa": "911GT",
                 "gender": "L",
                 "tanggal_lahir": "2024-09-17",
-                "status": null,
-                "keterangan": null,
-                "tanggal_hadir": null
+                "status": "H",
+                "keterangan": "Siswa Hadir",
+                "tanggal_hadir": "2024-09-17"
             },
             {
                 "nama": "Momoi",
@@ -29,8 +29,8 @@
                 "no_siswa": "911GR",
                 "gender": "P",
                 "tanggal_lahir": "2019-05-10",
-                "status": "S",
-                "keterangan": "Siswa Sakit",
+                "status": "H",
+                "keterangan": "Siswa Hadir",
                 "tanggal_hadir": "2024-09-17"
             },
             {
@@ -39,9 +39,9 @@
                 "no_siswa": "123",
                 "gender": "L",
                 "tanggal_lahir": "2024-02-22",
-                "status": null,
-                "keterangan": null,
-                "tanggal_hadir": null
+                "status": "H",
+                "keterangan": "Siswa Hadir",
+                "tanggal_hadir": "2024-09-17"
             },
             {
                 "nama": "siapa aja",
@@ -49,9 +49,9 @@
                 "no_siswa": "rx-39",
                 "gender": "L",
                 "tanggal_lahir": "2024-09-17",
-                "status": null,
-                "keterangan": null,
-                "tanggal_hadir": null
+                "status": "H",
+                "keterangan": "Siswa Hadir",
+                "tanggal_hadir": "2024-09-17"
             }
         ]
     },
