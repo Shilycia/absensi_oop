@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['login'])) {
-    header("Location: page/Login.html");
+    header("Location: page/Login.php");
     exit;
 }
 
@@ -300,7 +300,10 @@ if (isset($_POST['status_alpha'])) {
         <h1 class="fw-bold mt-5 text-center">TABLE DATA SISWA</h1>
 
         <div class="col-12 d-flex justify-content-between mt-3">
-            <button class="btn btn-success" onclick="window.location.href = 'add.php'">ADD NEW STUDENT</button>
+            <div>
+                <button class="btn btn-success" onclick="window.location.href = 'add.php'">ADD NEW STUDENT</button>
+                <button class="btn btn-danger" onclick="window.location.href = 'log_out.php'">Keluar</button>
+            </div>
             <form action="" method="post" class="d-flex align-items-center">
                 <label class="h4 me-3">Search:</label>
                 <input type="text" class="form-control me-2 ps-2" name="search" placeholder="Masukkan Nama">

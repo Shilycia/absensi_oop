@@ -25,8 +25,8 @@ if(isset($_POST["submit"])){
                 <label for="" class="h4 mt-4 fw-bold text-light">SMKN WARSIH JAKARTA</label>
             </div>
             <div class="col-7 h-100 d-flex flex-column align-items-center justify-content-center">
-                <label for="" class="h3 text-center text-light" style="max-width: 85%;">FORM ABSENSI SMKN WARSIH JAKARTA</label>
-                <form action="" method="post" class="w-auto">
+                <label for="" class="h3 text-center text-light">FORM ABSENSI SMKN WARSIH JAKARTA</label>
+                <form action="" method="post" class="w-100 d-flex align-items-center justify-content-center">
                     <input type="submit" class="btn border-1 border-dark w-25 mt-5 bg-warning fw-bold" name="submit">MASUK</input>
                 </form>
             </div>
