@@ -1,0 +1,68 @@
+[
+    {
+        "status": 200,
+        "message": "Success",
+        "data": [
+            {
+                "nama": "Virgianto",
+                "kelas": "12A",
+                "no_siswa": "G30SPKL",
+                "gender": "L",
+                "tanggal_lahir": "2003-07-28",
+                "status": "H",
+                "keterangan": "Siswa Hadir"
+            },
+            {
+                "nama": "Bintang A",
+                "kelas": "1A",
+                "no_siswa": "911GT",
+                "gender": "L",
+                "tanggal_lahir": "2007-03-10",
+                "status": "H",
+                "keterangan": "Siswa Hadir"
+            }
+        ]
+    },
+    {
+        "status": 201,
+        "message": "Sumber daya berhasil dibuat",
+        "data": {
+            "id": 123,
+            "nama": "Sumber Daya Baru"
+        }
+    },
+    {
+        "status": 204,
+        "message": "Tidak ada konten untuk ditampilkan"
+    },
+    {
+        "status": 400,
+        "message": "Permintaan tidak valid",
+        "errors": [
+            {
+                "field": "nama",
+                "message": "Nama wajib diisi"
+            }
+        ]
+    },
+    {
+        "status": 401,
+        "message": "Pengguna tidak terotentikasi"
+    },
+    {
+        "status": 403,
+        "message": "Akses ditolak"
+    },
+    {
+        "status": 404,
+        "message": "Sumber daya tidak ditemukan"
+    },
+    {
+        "status": 500,
+        "message": "Terjadi kesalahan pada server"
+    },
+    {
+        "status": 503,
+        "message": "Layanan tidak tersedia saat ini"
+    }
+]
